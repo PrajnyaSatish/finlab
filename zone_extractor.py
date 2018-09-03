@@ -81,17 +81,17 @@ if __name__ == '__main__':
     year = str(input("Enter the year you want to work on: "))
     file_location = 'Data/WholeManuals/'
     filenames = glob.glob(os.path.join(file_location,'Moodys{0}*.XML'.format(year)))
-#    filenames = ['Data/Brightness_70/Moodys1983.XML']
+    filenames = ['Data/Brightness_70/Moodys1983.XML']
     for file_in in filenames:
         pd_table = pd.DataFrame()
         print('\n'+file_in)
         filename = re.split('/',file_in)[-1]
         all_pages = parser(file_in)
-#        selected_pages = list(range(len(all_pages)))
-        selected_pages = list(range(0, 10))
+        selected_pages = list(range(len(all_pages)))
         for page_num in selected_pages:
             num_cols_expected = find_expected_col_num(info, all_pages[page_num]['microfiche_details'])
             boxes = template(all_pages[page_num], num_cols_expected, year)
+#            print(boxes)
             pd_table = pd_table.append(write_string(all_pages[page_num]['microfiche_details'], boxes))
             print("Page {0} done".format(page_num+1))
         outfile_location = './'

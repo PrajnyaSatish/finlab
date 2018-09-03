@@ -123,7 +123,7 @@ def find_expected_col_num(info, p_info):
             if isinstance(select_cols[-1:]['Columns'], int):
                 num_cols_expected = int(select_cols[-1:]['Columns'])
             else:
-                num_cols_expected = None
+                num_cols_expected = 1
     elif len(select_cols) == 0:
         num_cols_expected = 1
     else:

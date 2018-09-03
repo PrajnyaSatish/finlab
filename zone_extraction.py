@@ -92,9 +92,10 @@ parsed_word_file = glob.glob(os.path.join(directory,'*{0}*.json'.format(year)))[
 with open(parsed_word_file) as pf:
     all_pages = json.load(pf)
 
-selected_pages = list(range(0, 3))
+selected_pages = list(range(50))
 #selected_pages = [635, 644]
 for page in selected_pages:
+#    print(all_pages[page]['microfiche_details']['fileName'], end='  ')
     num_cols_expected = find_expected_col_num(info, all_pages[page]['microfiche_details'])
     boxes_out = template(all_pages[page], num_cols_expected, year)
     draw_rectangles([{'color':'violet', 'word_list': all_pages[page]['word_info']},
