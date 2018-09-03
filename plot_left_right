@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Apr 24 00:47:35 2018
+
+@author: prajnya
+"""
+# In[]:
+import matplotlib.pyplot as plt
+from collections import Counter as freqCounter
+import numpy as np
+
+# In[]:
+left_lims = [2437, 4529, 2426, 2434, 3136, 2552, 3359, 2714, 2426, 2423, 2419, 2419, 2416, 2416, 2416, 2416, 5897, 2423, 2416, 2419, 562, 2412, 2412, 8096, 2419, 2552, 2412, 2412, 2963, 2416, 2552, 2830, 2412, 2552, 2412, 2549, 2412, 2416, 2416, 2549, 2412, 2552, 2549, 2840, 2408, 2412, 2405, 2416, 2408, 2405, 2405, 2405, 2405, 2405, 2405, 2405, 2408, 2416, 2542, 2401, 2401, 2416, 3377, 2405, 2405, 587, 2538, 5882, 2412, 5335, 5825, 2408, 2416, 2412, 2412, 2408, 2412, 2693, 2405, 2412, 2416, 2412, 2416, 2419, 2419, 4442, 2430]
+right_lims = [10242, 10620, 4295, 12427, 12614, 12611, 12748, 10944, 12733, 12737, 12733, 10843, 12730, 12733, 12215, 9252, 12730, 12730, 9252, 12733, 11484, 12733, 12730, 12730, 12733, 12726, 12726, 11387, 12737, 12733, 10530, 12737, 12733, 12733, 12200, 12733, 12733, 12539, 12730, 10426, 9248, 10602, 10076, 11380, 12730, 10224, 12175, 12730, 12172, 11520, 10177, 11837, 12118, 12035, 11419, 11851, 12046, 11581, 12449, 12719, 9745, 12571, 12715, 11624, 12712, 11974, 12708, 6426, 10728, 9756, 12564, 12708, 12701, 12701, 12708, 12712, 12712, 12715, 12712, 12715, 12712, 12715, 11668, 9536, 12712, 12712, 12708]
+left_freq_counts, bins = np.histogram(left_lims, bins = 100, range = (0,20000))
+left_start_step = bins[(left_freq_counts.tolist()).index(max(left_freq_counts))]
+left_end_step = left_start_step+100
+fixed_left_lim = left_end_step
+for val in left_lims:
+    if left_start_step <= val:
+        if val < fixed_left_lim:
+            fixed_left_lim = val
+            
+right_freq_counts, bins = np.histogram(right_lims, bins = 100, range = (0,20000))
+right_start_step = bins[(right_freq_counts.tolist()).index(max(right_freq_counts))]
+right_end_step = right_start_step+100
+fixed_right_lim = right_start_step
+for val in right_lims:
+    if val <= right_end_step:
+        if fixed_right_lim < val:
+            fixed_right_lim = val
+
+
