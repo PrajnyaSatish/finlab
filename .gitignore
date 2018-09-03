@@ -18,6 +18,8 @@ Pages/
 INDUSTRIAL*
 *.XML
 Moodys1983
+*.xlsx#
+*.idea
 
 =======
 >>>>>>> f191fd555eb78a74d2bb15e03676119193b42e5e
