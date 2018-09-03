@@ -130,7 +130,6 @@ def parser(filename):
         with open(filename, encoding='utf-16-le') as read_file:
             file_content = read_file.readlines()
     all_pages = parse_line_details(file_content)
-    print(len(all_pages))
     return all_pages
 
 # In[]: 

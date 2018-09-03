@@ -80,8 +80,8 @@ if __name__ == '__main__':
     info = pd.read_excel(open('list_sections20180613.xlsx','rb'), sheet_name=0)
     year = str(input("Enter the year you want to work on: "))
     file_location = 'Data/WholeManuals/'
-#    filenames = glob.glob(os.path.join(file_location,'Moodys{0}*.XML'.format(year)))
-    filenames = ['Data/Brightness_70/Moodys1983.XML']
+    filenames = glob.glob(os.path.join(file_location,'Moodys{0}*.XML'.format(year)))
+#    filenames = ['Data/Brightness_70/Moodys1983.XML']
     for file_in in filenames:
         pd_table = pd.DataFrame()
         print('\n'+file_in)
@@ -90,11 +90,8 @@ if __name__ == '__main__':
 #        selected_pages = list(range(len(all_pages)))
         selected_pages = list(range(0, 10))
         for page_num in selected_pages:
-            print(all_pages[page_num]['microfiche_details'])
             num_cols_expected = find_expected_col_num(info, all_pages[page_num]['microfiche_details'])
-            
             boxes = template(all_pages[page_num], num_cols_expected, year)
-            print(boxes)
             pd_table = pd_table.append(write_string(all_pages[page_num]['microfiche_details'], boxes))
             print("Page {0} done".format(page_num+1))
         outfile_location = './'

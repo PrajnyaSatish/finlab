@@ -97,7 +97,6 @@ selected_pages = list(range(0, 3))
 for page in selected_pages:
     num_cols_expected = find_expected_col_num(info, all_pages[page]['microfiche_details'])
     boxes_out = template(all_pages[page], num_cols_expected, year)
-    print(boxes_out)
     draw_rectangles([{'color':'violet', 'word_list': all_pages[page]['word_info']},
                       {'color': 'seagreen', 'word_list': boxes_out}], \
     'Data/Lines_1983/Line_Info_{0}'.format(all_pages[page]['pageCount']+1))
