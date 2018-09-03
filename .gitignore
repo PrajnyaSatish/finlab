@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 led / optimized / DLL files
+=======
+# Byte-compiled / optimized / DLL files
+>>>>>>> f191fd555eb78a74d2bb15e03676119193b42e5e
 __pycache__/
 *.py[cod]
 *$py.class
@@ -6,6 +10,7 @@ __pycache__/
 # C extensions
 *.so
 
+<<<<<<< HEAD
 # Project Specific
 Data/
 backups/
@@ -14,6 +19,8 @@ INDUSTRIAL*
 *.XML
 Moodys1983
 
+=======
+>>>>>>> f191fd555eb78a74d2bb15e03676119193b42e5e
 # Distribution / packaging
 .Python
 build/
@@ -80,10 +87,13 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+<<<<<<< HEAD
 # IPython
 profile_default/
 ipython_config.py
 
+=======
+>>>>>>> f191fd555eb78a74d2bb15e03676119193b42e5e
 # pyenv
 .python-version
 
@@ -114,5 +124,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+<<<<<<< HEAD
 .dmypy.json
 dmypy.json
+=======
+>>>>>>> f191fd555eb78a74d2bb15e03676119193b42e5e
