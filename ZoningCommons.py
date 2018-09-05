@@ -44,6 +44,7 @@ def left_right_bounds(left_lims, right_lims):
                     fixed_right_lim = val
     return fixed_left_lim, fixed_right_lim
 
+
 def get_text_bounds(input_bounds):
     left_lims = []
     right_lims = []
@@ -51,12 +52,15 @@ def get_text_bounds(input_bounds):
     b_most = []
     left_lims = [line['l'] for line in input_bounds]
     right_lims = [line['r'] for line in input_bounds]
-    page_left, page_right = left_right_bounds(left_lims, right_lims)
-    top_most.append(min(input_bounds, key=lambda k: ('t' not in k, k.get('t', None)))['t'])
-    b_most.append(max(input_bounds, key=lambda k: ('b' not in k, k.get('b', None)))['b'])
-    page_top = min(top_most)
-    page_bottom = max(b_most) 
-    return page_left, page_right, page_top, page_bottom
+    if left_lims and right_lims:
+        page_left, page_right = left_right_bounds(left_lims, right_lims)
+        top_most.append(min(input_bounds, key=lambda k: ('t' not in k, k.get('t', None)))['t'])
+        b_most.append(max(input_bounds, key=lambda k: ('b' not in k, k.get('b', None)))['b'])
+        page_top = min(top_most)
+        page_bottom = max(b_most) 
+        return page_left, page_right, page_top, page_bottom
+    else:
+        return 0,0,0,0
 
 def mean_gap_between(horizontal_line_dict, gap_threshold):
     """ Find mean gap between the horizontal lines."""

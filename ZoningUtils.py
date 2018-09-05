@@ -106,6 +106,7 @@ def sort_linewise(list_of_words):
     return sorted_lr
 
 def find_expected_col_num(info, p_info):
+    print(p_info)
     select_cols = info[info['Columns'].notnull() & \
                      (info['Microfiche1'] <= int(p_info['microficheName'])) & \
                      (int(p_info['microficheName']) <= info['Microfiche2']) & \

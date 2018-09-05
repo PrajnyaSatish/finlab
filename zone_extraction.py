@@ -82,7 +82,7 @@ def template(page, num_cols_expected, year):
 #    'Data/Lines_1962/Line_Info_{0}'.format(page_num+1))
 
 # In[]:
-year = str(1983)
+year = str(1955)
 
 info = pd.read_excel(open('list_sections20180613.xlsx','rb'), sheet_name=0)
 
@@ -92,14 +92,15 @@ parsed_word_file = glob.glob(os.path.join(directory,'*{0}*.json'.format(year)))[
 with open(parsed_word_file) as pf:
     all_pages = json.load(pf)
 
-selected_pages = list(range(50))
+selected_pages = list(range(3137,3138))
 #selected_pages = [635, 644]
 for page in selected_pages:
 #    print(all_pages[page]['microfiche_details']['fileName'], end='  ')
     num_cols_expected = find_expected_col_num(info, all_pages[page]['microfiche_details'])
     boxes_out = template(all_pages[page], num_cols_expected, year)
+    print(boxes_out)
     draw_rectangles([{'color':'violet', 'word_list': all_pages[page]['word_info']},
                       {'color': 'seagreen', 'word_list': boxes_out}], \
-    'Data/Lines_1983/Line_Info_{0}'.format(all_pages[page]['pageCount']+1))
+    'Data/Lines_1955/Line_Info_{0}'.format(all_pages[page]['pageCount']+1))
     print("Page {0} done".format(page+1)) 
 

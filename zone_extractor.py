@@ -91,7 +91,7 @@ if __name__ == '__main__':
         for page_num in selected_pages:
             num_cols_expected = find_expected_col_num(info, all_pages[page_num]['microfiche_details'])
             boxes = template(all_pages[page_num], num_cols_expected, year)
-#            print(boxes)
+            print(boxes)
             pd_table = pd_table.append(write_string(all_pages[page_num]['microfiche_details'], boxes))
             print("Page {0} done".format(page_num+1))
         outfile_location = './'

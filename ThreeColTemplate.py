@@ -234,39 +234,42 @@ class three_col_page:
         """ When the page is expected to have three columns come here directly."""
         
         ### Rejoin all the blocks first so that there is only one left. Makes life easier
-        sorted_td = copy.deepcopy(sorted(boxes_in, key=lambda k: ('t' not in k, k.get('t', None))))
-        single_box = copy.deepcopy(sorted_td[0])
-        single_box.update({'b':sorted_td[-1]['b'], 'h':sorted_td[-1]['b']-sorted_td[0]['t'],
-                           'color':'seagreen'})
-        one_third = (single_box['r']-single_box['l'])/3
-        page_left = single_box['l']
-        page_right = single_box['r']
-        words_in_single_box = get_words_in_box(single_box, self.words_in_page)
-        text_one_third = page_left + one_third
-        text_two_third = page_right- one_third
-        
-        vertical_split_1= find_vertical_line(text_one_third, words_in_single_box)
-        vertical_split_2 = find_vertical_line(text_two_third, words_in_single_box)
-        final_boxes = []
-        if vertical_split_1 and vertical_split_2:
-            box_1 = {'t': single_box['t'], 'b': single_box['b'],
-                     'l': page_left, 'r': vertical_split_1,
-                     'w': vertical_split_1-page_left, 'h': single_box['b']-single_box['t'],
-                     'color':'mediumvioletred', 'num_col': 'three'}
-            box_2 = {'t': single_box['t'], 'b': single_box['b'],
-                     'l': vertical_split_1, 'r': vertical_split_2,
-                     'w': vertical_split_2-vertical_split_1, 'h': single_box['b']-single_box['t'],
-                     'color':'mediumvioletred', 'num_col': 'three'}
-            box_3 = {'t': single_box['t'], 'b': single_box['b'],
-                     'l': vertical_split_2, 'r': page_right,
-                     'w': page_right-vertical_split_2, 'h': single_box['b']-single_box['t'],
-                     'color':'mediumvioletred', 'num_col': 'three'}
-            final_boxes.extend([box_1, box_2, box_3])
+        if boxes_in:
+            sorted_td = copy.deepcopy(sorted(boxes_in, key=lambda k: ('t' not in k, k.get('t', None))))
+            single_box = copy.deepcopy(sorted_td[0])
+            single_box.update({'b':sorted_td[-1]['b'], 'h':sorted_td[-1]['b']-sorted_td[0]['t'],
+                               'color':'seagreen'})
+            one_third = (single_box['r']-single_box['l'])/3
+            page_left = single_box['l']
+            page_right = single_box['r']
+            words_in_single_box = get_words_in_box(single_box, self.words_in_page)
+            text_one_third = page_left + one_third
+            text_two_third = page_right- one_third
+            
+            vertical_split_1= find_vertical_line(text_one_third, words_in_single_box)
+            vertical_split_2 = find_vertical_line(text_two_third, words_in_single_box)
+            final_boxes = []
+            if vertical_split_1 and vertical_split_2:
+                box_1 = {'t': single_box['t'], 'b': single_box['b'],
+                         'l': page_left, 'r': vertical_split_1,
+                         'w': vertical_split_1-page_left, 'h': single_box['b']-single_box['t'],
+                         'color':'mediumvioletred', 'num_col': 'three'}
+                box_2 = {'t': single_box['t'], 'b': single_box['b'],
+                         'l': vertical_split_1, 'r': vertical_split_2,
+                         'w': vertical_split_2-vertical_split_1, 'h': single_box['b']-single_box['t'],
+                         'color':'mediumvioletred', 'num_col': 'three'}
+                box_3 = {'t': single_box['t'], 'b': single_box['b'],
+                         'l': vertical_split_2, 'r': page_right,
+                         'w': page_right-vertical_split_2, 'h': single_box['b']-single_box['t'],
+                         'color':'mediumvioletred', 'num_col': 'three'}
+                final_boxes.extend([box_1, box_2, box_3])
+            else:
+                return [{'l': page_left, 't': single_box['t'], 'r': page_right, 'b': single_box['b'],
+                                        'w': page_right-page_left, 'h': single_box['b']-single_box['t'],
+                                        'color':'red', 'num_col': 'one'}]
+            return final_boxes
         else:
-            return [{'l': page_left, 't': single_box['t'], 'r': page_right, 'b': single_box['b'],
-                                    'w': page_right-page_left, 'h': single_box['b']-single_box['t'],
-                                    'color':'red', 'num_col': 'one'}]
-        return final_boxes
+            return []
 
     def create_new_boxes(self, top_bounds, bot_bounds, box):
         """ Given a set of top and bounds, split the outer box into a set of smaller ones"""

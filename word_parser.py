@@ -50,7 +50,7 @@ def get_microfiche_name(str_in):
     if ".tif" in split_string[1]:
         split_again = split_string[1].split("/")
         year = split_again[-3][10:14]
-        microfiche = split_again[-2]
+        microfiche = split_again[-2][:4]
         file_name = split_again[-1]
         page_num = file_name[-8:-4]
         dict_info = {'year': year, 'microficheName': microfiche,
